@@ -1,0 +1,19 @@
+[project]
+name = "fuel-route-optimizer"
+version = "1.0.0"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["routing/migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "C4", "DJ", "RUF"]
+ignore = [
+    "RUF001", "RUF002", "RUF003",  # unicode in docstrings (·) is intentional
+    "RUF012",  # Django Meta and Command class attributes are idiomatic
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["config", "routing"]
