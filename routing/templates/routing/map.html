@@ -70,7 +70,10 @@
 <script>
   const map = L.map("map").setView([39.5, -98.35], 4);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 18, attribution: "&copy; OpenStreetMap contributors"
+    maxZoom: 18, attribution: "&copy; OpenStreetMap contributors",
+    // OSM rejects tile requests without a Referer; Django's default
+    // Referrer-Policy (same-origin) strips it on cross-origin requests.
+    referrerPolicy: "strict-origin-when-cross-origin"
   }).addTo(map);
 
   const data = JSON.parse(document.getElementById("route-geojson").textContent);
